@@ -10,13 +10,13 @@ export default async function handler(req, res) {
   const path = req.url.replace('/api', '');
   
   if (path === '/' || path === '') {
-    return res.status(200).send('');
+    return res.status(200).send('OK');
   }
   
   const target = path.substring(1);
   
   if (!target.startsWith('http')) {
-    return res.status(400).send('Hata');
+    return res.status(400).send('Bad Request');
   }
   
   try {
@@ -40,6 +40,6 @@ export default async function handler(req, res) {
     return res.status(response.status).send(buffer);
     
   } catch (err) {
-    return res.status(502).send('Hata');
+    return res.status(502).send('Error');
   }
 }
